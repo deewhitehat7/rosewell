@@ -1,0 +1,18 @@
+body {
+  background-image: url('https://www.roswellpark.org/sites/default/files/2020-11/roswell-park-building.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.92);
+  z-index: -1;
+}
