@@ -1,0 +1,1923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HopeCare – Cancer Support & Awareness</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #4a90e2;
+      --accent-color: #e91e63;
+      --light-color: #f8f9fa;
+      --text-color: #333;
+      --white: #fff;
+      --shadow: 0 4px 16px rgba(74,144,226,0.08);
+      --dark-mode-bg: #121212;
+      --dark-mode-text: #e0e0e0;
+      --transition: all 0.3s ease;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      background: var(--light-color);
+      color: var(--text-color);
+      font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      transition: background 0.3s, color 0.3s;
+      line-height: 1.6;
+      overflow-x: hidden;
+      /* Roswell Park background */
+      background-image: url('https://www.roswellpark.org/sites/default/files/2020-11/roswell-park-building.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      position: relative;
+    }
+    
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.92);
+      z-index: -1;
+      transition: var(--transition);
+    }
+    
+    body.dark-mode {
+      background: var(--dark-mode-bg);
+      color: var(--dark-mode-text);
+    }
+    
+    body.dark-mode::before {
+      background: rgba(0, 0, 0, 0.85);
+    }
+    
+    /* Header Styles */
+    header {
+      background: var(--white);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      padding: 1.5rem 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      transition: var(--transition);
+    }
+    
+    .dark-mode header {
+      background: #1e1e1e;
+    }
+    
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+    
+    header h1 {
+      color: var(--primary-color);
+      margin-bottom: 0.2em;
+      font-size: 2.2rem;
+      font-weight: 700;
+      transition: var(--transition);
+    }
+    
+    header p {
+      color: var(--accent-color);
+      margin-bottom: 1em;
+      font-weight: 500;
+    }
+    
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 0.5rem;
+    }
+    
+    nav a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+      position: relative;
+      padding: 0.3rem 0;
+    }
+    
+    .dark-mode nav a {
+      color: #7ab0ff;
+    }
+    
+    nav a:hover,
+    nav a:focus {
+      color: var(--accent-color);
+    }
+    
+    .dark-mode nav a:hover {
+      color: #ff6b9d;
+    }
+    
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: var(--accent-color);
+      transition: var(--transition);
+    }
+    
+    nav a:hover::after {
+      width: 100%;
+    }
+    
+    /* Theme Toggle */
+    .theme-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--primary-color);
+      transition: transform 0.3s;
+    }
+    
+    .theme-toggle:hover {
+      transform: rotate(30deg);
+    }
+    
+    .dark-mode .theme-toggle {
+      color: #7ab0ff;
+    }
+    
+    /* Hero Section */
+    .hero {
+      margin-top: 120px;
+      position: relative;
+      height: 70vh;
+      min-height: 500px;
+      overflow: hidden;
+      border-radius: 0 0 30px 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    
+    .hero-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.8);
+    }
+    
+    .hero-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: white;
+      width: 90%;
+      max-width: 800px;
+      z-index: 2;
+    }
+    
+    .hero-title {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+      animation: fadeInDown 1s ease-out;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+      animation: fadeInUp 1s ease-out 0.3s forwards;
+      opacity: 0;
+    }
+    
+    .hero-button {
+      display: inline-block;
+      background: var(--accent-color);
+      color: white;
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition);
+      animation: fadeInUp 1s ease-out 0.6s forwards;
+      opacity: 0;
+      box-shadow: 0 4px 15px rgba(233,30,99,0.3);
+    }
+    
+    .hero-button:hover {
+      background: #c2185b;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(233,30,99,0.4);
+    }
+    
+    /* Main Content Sections */
+    main {
+      padding: 4rem 0;
+    }
+    
+    section {
+      max-width: 1200px;
+      margin: 3rem auto;
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 3rem 2rem;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: var(--transition);
+      backdrop-filter: blur(5px);
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+    
+    .dark-mode section {
+      background: rgba(30, 30, 30, 0.92);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    section:nth-child(even) {
+      background: linear-gradient(135deg, rgba(248,249,250,0.92) 0%, rgba(255,255,255,0.92) 100%);
+    }
+    
+    .dark-mode section:nth-child(even) {
+      background: linear-gradient(135deg, rgba(26,26,26,0.92) 0%, rgba(42,42,42,0.92) 100%);
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      position: relative;
+    }
+    
+    .section-header h2 {
+      color: var(--primary-color);
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .dark-mode .section-header h2 {
+      color: #7ab0ff;
+    }
+    
+    .section-header h2::after {
+      content: '';
+      position: absolute;
+      width: 60px;
+      height: 4px;
+      background: var(--accent-color);
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+    
+    .section-img {
+      display: block;
+      margin: 0 auto 2rem auto;
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      border-radius: 20px;
+      background: #f2fafc;
+      box-shadow: 0 4px 15px rgba(74,144,226,0.15);
+      padding: 1rem;
+      transition: var(--transition);
+    }
+    
+    .dark-mode .section-img {
+      background: #2a2a2a;
+    }
+    
+    .section-img:hover {
+      transform: scale(1.1) rotate(5deg);
+    }
+    
+    /* About Section */
+    .about-content {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 3rem;
+    }
+    
+    .about-text {
+      flex: 1;
+      min-width: 300px;
+    }
+    
+    .about-text p {
+      margin-bottom: 1.5rem;
+    }
+    
+    .about-image {
+      flex: 1;
+      min-width: 300px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      transition: var(--transition);
+    }
+    
+    .about-image:hover {
+      transform: scale(1.03);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    }
+    
+    .about-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    
+    .stats-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-top: 2rem;
+      justify-content: center;
+    }
+    
+    .stat {
+      text-align: center;
+      padding: 1.5rem;
+      background: #f5f9ff;
+      border-radius: 12px;
+      min-width: 150px;
+      transition: var(--transition);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    
+    .dark-mode .stat {
+      background: #2a2a2a;
+    }
+    
+    .stat h3 {
+      color: var(--accent-color);
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    /* Learn Section */
+    .cancer-types {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .type-card {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: var(--transition);
+      text-align: center;
+      cursor: pointer;
+      background: rgba(255,255,255,0.95);
+    }
+    
+    .dark-mode .type-card {
+      background: rgba(42,42,42,0.95);
+    }
+    
+    .type-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    }
+    
+    .type-icon {
+      font-size: 2.5rem;
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+    }
+    
+    /* Stories Section */
+    .stories-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .story-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: var(--transition);
+      background: rgba(255,255,255,0.95);
+    }
+    
+    .dark-mode .story-card {
+      background: rgba(42,42,42,0.95);
+    }
+    
+    .story-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    
+    .story-image {
+      height: 200px;
+      width: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .story-card:hover .story-image {
+      transform: scale(1.05);
+    }
+    
+    .story-content {
+      padding: 1.5rem;
+    }
+    
+    .story-content h3 {
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+    }
+    
+    .dark-mode .story-content h3 {
+      color: #7ab0ff;
+    }
+    
+    .story-meta {
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    
+    .dark-mode .story-meta {
+      color: #aaa;
+    }
+    
+    .read-more {
+      color: var(--accent-color);
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      transition: var(--transition);
+    }
+    
+    .read-more i {
+      margin-left: 5px;
+      transition: var(--transition);
+    }
+    
+    .read-more:hover {
+      color: #c2185b;
+    }
+    
+    .read-more:hover i {
+      transform: translateX(5px);
+    }
+    
+    /* Support Section */
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .resource-card {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: var(--transition);
+      cursor: pointer;
+      background: rgba(255,255,255,0.95);
+    }
+    
+    .dark-mode .resource-card {
+      background: rgba(42,42,42,0.95);
+    }
+    
+    .resource-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    
+    .resource-icon {
+      font-size: 2rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+    
+    /* Donation Section */
+    .donation-section {
+      max-width: 1000px;
+    }
+    
+    .donation-options {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 2.5rem 0;
+    }
+    
+    .donation-option {
+      background: #f5f9ff;
+      border-radius: 12px;
+      padding: 1.8rem;
+      width: 170px;
+      cursor: pointer;
+      transition: var(--transition);
+      border: 2px solid transparent;
+      text-align: center;
+      background: rgba(245,249,255,0.95);
+    }
+    
+    .dark-mode .donation-option {
+      background: rgba(42,42,42,0.95);
+    }
+    
+    .donation-option:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+      border-color: var(--primary-color);
+    }
+    
+    .donation-option.selected {
+      background: rgba(74,144,226,0.1);
+      border-color: var(--primary-color);
+    }
+    
+    .dark-mode .donation-option.selected {
+      background: rgba(74,144,226,0.2);
+    }
+    
+    .donation-amount {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--accent-color);
+      margin-bottom: 0.8rem;
+    }
+    
+    .custom-amount {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    
+    .custom-amount input {
+      width: 150px;
+      padding: 0.9rem;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      font-size: 1rem;
+      background: var(--light-color);
+      transition: var(--transition);
+      text-align: center;
+    }
+    
+    .dark-mode input {
+      background: #2a2a2a;
+      border-color: #444;
+      color: var(--dark-mode-text);
+    }
+    
+    .payment-methods {
+      margin-top: 2.5rem;
+    }
+    
+    .payment-method {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 1.2rem;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+      background: #f5f9ff;
+    }
+    
+    .dark-mode .payment-method {
+      background: #2a2a2a;
+    }
+    
+    .payment-method:hover {
+      background: rgba(74,144,226,0.1);
+    }
+    
+    .payment-method.selected {
+      background: rgba(74,144,226,0.1);
+      border: 1px solid var(--primary-color);
+    }
+    
+    .dark-mode .payment-method.selected {
+      background: rgba(74,144,226,0.2);
+    }
+    
+    .payment-method i {
+      font-size: 2.2rem;
+      color: var(--primary-color);
+    }
+    
+    .donation-progress {
+      margin: 2rem 0;
+      background: #e0e0e0;
+      height: 20px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    
+    .dark-mode .donation-progress {
+      background: #333;
+    }
+    
+    .progress-bar {
+      height: 100%;
+      background: var(--primary-color);
+      width: 0;
+      transition: width 1s ease-in-out;
+    }
+    
+    .progress-text {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 0.8rem;
+      font-size: 1rem;
+    }
+    
+    .recent-donations {
+      margin-top: 2.5rem;
+      max-height: 220px;
+      overflow-y: auto;
+      padding: 1.5rem;
+      background: #f5f9ff;
+      border-radius: 12px;
+    }
+    
+    .dark-mode .recent-donations {
+      background: #2a2a2a;
+    }
+    
+    .donation-item {
+      padding: 1rem 0;
+      border-bottom: 1px solid #e0e0e0;
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .dark-mode .donation-item {
+      border-bottom: 1px solid #444;
+    }
+    
+    .donation-item:last-child {
+      border-bottom: none;
+    }
+    
+    .donor-name {
+      font-weight: bold;
+    }
+    
+    .donation-amount {
+      color: var(--accent-color);
+    }
+    
+    /* Contact Section */
+    .contact-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
+      margin-top: 2rem;
+    }
+    
+    .contact-info {
+      flex: 1;
+      min-width: 300px;
+    }
+    
+    .contact-info h3 {
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+    }
+    
+    .contact-details {
+      margin-bottom: 2rem;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+    
+    .contact-icon {
+      color: var(--accent-color);
+      margin-right: 1rem;
+      font-size: 1.2rem;
+      margin-top: 3px;
+    }
+    
+    .contact-form {
+      flex: 1;
+      min-width: 300px;
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: var(--primary-color);
+    }
+    
+    .dark-mode .form-group label {
+      color: #7ab0ff;
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: 0.9rem;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      font-size: 1rem;
+      transition: var(--transition);
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    .dark-mode .form-control {
+      background: #2a2a2a;
+      border-color: #444;
+      color: var(--dark-mode-text);
+    }
+    
+    .form-control:focus {
+      border-color: var(--primary-color);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(74,144,226,0.2);
+    }
+    
+    textarea.form-control {
+      min-height: 150px;
+      resize: vertical;
+    }
+    
+    .submit-btn {
+      background: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      width: 100%;
+    }
+    
+    .dark-mode .submit-btn {
+      background: #c2185b;
+    }
+    
+    .submit-btn:hover {
+      background: #c2185b;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(233,30,99,0.3);
+    }
+    
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, var(--primary-color) 0%, #2a6fc9 100%);
+      color: white;
+      padding: 3rem 0 1rem;
+      text-align: center;
+    }
+    
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+      text-align: left;
+    }
+    
+    .footer-logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: white;
+    }
+    
+    .footer-about p {
+      margin-bottom: 1.5rem;
+      opacity: 0.9;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      color: white;
+      transition: var(--transition);
+    }
+    
+    .social-link:hover {
+      background: var(--accent-color);
+      transform: translateY(-3px);
+    }
+    
+    .footer-links h3 {
+      color: white;
+      margin-bottom: 1.5rem;
+      font-size: 1.3rem;
+    }
+    
+    .footer-links ul {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+    
+    .footer-links a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    .footer-links a:hover {
+      color: white;
+      padding-left: 5px;
+    }
+    
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 1.5rem;
+      margin-top: 2rem;
+    }
+    
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .modal-content {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 16px;
+      max-width: 700px;
+      width: 90%;
+      position: relative;
+      animation: modalFadeIn 0.3s;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+    
+    .dark-mode .modal-content {
+      background: #2a2a2a;
+      color: var(--dark-mode-text);
+    }
+    
+    .close-modal {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: var(--accent-color);
+    }
+    
+    /* Animations */
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    
+    @keyframes modalFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Back to top button */
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--accent-color);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+      z-index: 100;
+    }
+    
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .back-to-top:hover {
+      background: #c2185b;
+      transform: translateY(-5px);
+    }
+    
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.5rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.2rem;
+      }
+      
+      section {
+        padding: 2rem 1rem;
+        margin: 2rem auto;
+        border-radius: 12px;
+      }
+      
+      .section-header h2 {
+        font-size: 1.8rem;
+      }
+      
+      .section-img {
+        width: 90px;
+        height: 90px;
+      }
+      
+      .about-content {
+        flex-direction: column;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      header {
+        padding: 1rem 0;
+      }
+      
+      header h1 {
+        font-size: 1.8rem;
+      }
+      
+      nav {
+        gap: 1rem;
+      }
+      
+      .hero {
+        height: 60vh;
+        min-height: 400px;
+        margin-top: 90px;
+      }
+      
+      .hero-title {
+        font-size: 2rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1rem;
+      }
+      
+      .hero-button {
+        padding: 0.8rem 1.8rem;
+        font-size: 1rem;
+      }
+      
+      .section-header h2 {
+        font-size: 1.5rem;
+      }
+      
+      .section-img {
+        width: 70px;
+        height: 70px;
+      }
+      
+      .contact-container {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <button class="theme-toggle" aria-label="Toggle dark mode">
+        <i class="fas fa-moon"></i>
+      </button>
+      <h1>HopeCare</h1>
+      <p>Empowering Hope. Inspiring Action.</p>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#learn">Learn</a>
+        <a href="#stories">Stories</a>
+        <a href="#support">Resources</a>
+        <a href="#donate">Donate</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+         alt="Group of people at cancer awareness event" class="hero-image">
+    <div class="hero-content">
+      <h1 class="hero-title">Together We Can Beat Cancer</h1>
+      <p class="hero-subtitle">Providing support, education, and hope to those affected by cancer</p>
+      <a href="#donate" class="hero-button">Donate Now</a>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main>
+    <!-- About Section -->
+    <section id="about" class="visible">
+      <div class="section-header">
+        <img src="https://cdn-icons-png.flaticon.com/512/3209/3209266.png" alt="About HopeCare" class="section-img">
+        <h2>About Us</h2>
+        <p>HopeCare is dedicated to supporting individuals and families affected by cancer</p>
+      </div>
+      
+      <div class="about-content">
+        <div class="about-text">
+          <p>Founded in 2010, HopeCare has been a beacon of hope for thousands of cancer patients and their families. Our mission is to provide comprehensive support services, education, and resources to help navigate the challenges of cancer.</p>
+          <p>We believe no one should face cancer alone. Our team of dedicated professionals and volunteers work tirelessly to ensure every individual receives the care and support they need.</p>
+          <p>Through our programs and services, we aim to improve quality of life, provide emotional support, and empower individuals with knowledge and resources.</p>
+          <div class="stats-container">
+            <div class="stat">
+              <h3>15,000+</h3>
+              <p>Individuals Supported</p>
+            </div>
+            <div class="stat">
+              <h3>250+</h3>
+              <p>Professional Volunteers</p>
+            </div>
+            <div class="stat">
+              <h3>98%</h3>
+              <p>Client Satisfaction</p>
+            </div>
+          </div>
+        </div>
+        <div class="about-image">
+          <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+               alt="HopeCare team supporting patients">
+        </div>
+      </div>
+    </section>
+
+    <!-- Learn Section -->
+    <section id="learn">
+      <div class="section-header">
+        <img src="https://cdn-icons-png.flaticon.com/512/2784/2784487.png" alt="Learn About Cancer" class="section-img">
+        <h2>Learn About Cancer</h2>
+        <p>Knowledge is power. Educate yourself about cancer prevention, detection, and treatment.</p>
+      </div>
+      
+      <div class="cancer-types">
+        <div class="type-card" data-modal="understanding">
+          <div class="type-icon">
+            <i class="fas fa-lungs"></i>
+          </div>
+          <h3>Understanding Cancer</h3>
+          <p>Learn the basics about how cancer develops and spreads.</p>
+        </div>
+        
+        <div class="type-card" data-modal="types">
+          <div class="type-icon">
+            <i class="fas fa-female"></i>
+          </div>
+          <h3>Types of Cancer</h3>
+          <p>Information about different cancer categories and their characteristics.</p>
+        </div>
+        
+        <div class="type-card" data-modal="prevention">
+          <div class="type-icon">
+            <i class="fas fa-prostate"></i>
+          </div>
+          <h3>Prevention & Screening</h3>
+          <p>How to reduce your risk and detect cancer early.</p>
+        </div>
+        
+        <div class="type-card" data-modal="treatment">
+          <div class="type-icon">
+            <i class="fas fa-child"></i>
+          </div>
+          <h3>Treatment Options</h3>
+          <p>Explore various cancer treatments and therapies.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stories Section -->
+    <section id="stories">
+      <div class="section-header">
+        <img src="https://cdn-icons-png.flaticon.com/512/3227/3227060.png" alt="Real Stories" class="section-img">
+        <h2>Stories of Hope</h2>
+        <p>Real people sharing their cancer journeys and triumphs</p>
+      </div>
+      
+      <div class="stories-container">
+        <div class="story-card">
+          <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" 
+               alt="Sarah's story" class="story-image">
+          <div class="story-content">
+            <h3>Sarah's Journey</h3>
+            <p class="story-meta">Breast Cancer Survivor | 5 Years Remission</p>
+            <p>After my diagnosis, HopeCare became my second family. Their support groups helped me through my darkest days...</p>
+            <a href="#" class="read-more">Read Full Story <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        
+        <div class="story-card">
+          <img src="https://images.unsplash.com/photo-1607990283143-e81e7a2c9349?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+               alt="Michael's story" class="story-image">
+          <div class="story-content">
+            <h3>Michael's Fight</h3>
+            <p class="story-meta">Lung Cancer Survivor | 3 Years Remission</p>
+            <p>The financial assistance program allowed me to focus on treatment without worrying about bills...</p>
+            <a href="#" class="read-more">Read Full Story <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        
+        <div class="story-card">
+          <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+               alt="Emma's story" class="story-image">
+          <div class="story-content">
+            <h3>Emma's Courage</h3>
+            <p class="story-meta">Pediatric Cancer | 2 Years Remission</p>
+            <p>At just 8 years old, Emma faced leukemia with incredible bravery. The child life specialists at HopeCare...</p>
+            <a href="#" class="read-more">Read Full Story <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Support Section -->
+    <section id="support">
+      <div class="section-header">
+        <img src="https://cdn-icons-png.flaticon.com/512/3227/3227132.png" alt="Support and Resources" class="section-img">
+        <h2>Support & Resources</h2>
+        <p>Comprehensive assistance for patients and caregivers</p>
+      </div>
+      
+      <div class="resources-grid">
+        <div class="resource-card" data-modal="helplines">
+          <div class="resource-icon">
+            <i class="fas fa-phone-alt"></i>
+          </div>
+          <h3>24/7 Helpline</h3>
+          <p>Our compassionate staff are available around the clock to provide support and answer questions.</p>
+          <p><strong>Call: 1-800-HOPE-CARE</strong></p>
+        </div>
+        
+        <div class="resource-card" data-modal="specialists">
+          <div class="resource-icon">
+            <i class="fas fa-user-md"></i>
+          </div>
+          <h3>Find a Specialist</h3>
+          <p>Connect with oncologists, surgeons, and other cancer specialists in your area.</p>
+        </div>
+        
+        <div class="resource-card" data-modal="financial">
+          <div class="resource-icon">
+            <i class="fas fa-hand-holding-usd"></i>
+          </div>
+          <h3>Financial Aid</h3>
+          <p>Assistance programs to help with treatment costs, medications, and living expenses.</p>
+        </div>
+        
+        <div class="resource-card" data-modal="mental-health">
+          <div class="resource-icon">
+            <i class="fas fa-heart"></i>
+          </div>
+          <h3>Mental Health</h3>
+          <p>Counseling and support groups for patients, survivors, and caregivers.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Donation Section -->
+    <section id="donate" class="donation-section">
+      <div class="section-header">
+        <img src="https://cdn-icons-png.flaticon.com/512/3132/3132693.png" alt="Donate to HopeCare" class="section-img">
+        <h2>Support Our Mission</h2>
+        <p>Your donation helps us provide free support services, educational resources, and hope to cancer patients and their families.</p>
+      </div>
+      
+      <div class="donation-progress">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <div class="progress-text">
+        <span>Raised: <span id="raisedAmount">$12,450</span></span>
+        <span>Goal: $25,000</span>
+      </div>
+      
+      <h3>Select Donation Amount</h3>
+      <div class="donation-options">
+        <div class="donation-option" data-amount="25">
+          <div class="donation-amount">$25</div>
+          <div>Provides educational materials</div>
+        </div>
+        <div class="donation-option" data-amount="50">
+          <div class="donation-amount">$50</div>
+          <div>Supports a support group session</div>
+        </div>
+        <div class="donation-option" data-amount="100">
+          <div class="donation-amount">$100</div>
+          <div>Funds a counseling session</div>
+        </div>
+        <div class="donation-option" data-amount="250">
+          <div class="donation-amount">$250</div>
+          <div>Helps with financial assistance</div>
+        </div>
+        <div class="donation-option" data-amount="500">
+          <div class="donation-amount">$500</div>
+          <div>Sponsors a patient's needs</div>
+        </div>
+      </div>
+      
+      <div class="custom-amount">
+        <span>Or enter custom amount: $</span>
+        <input type="number" id="customAmount" min="1" placeholder="Other amount">
+      </div>
+      
+      <h3>Payment Method</h3>
+      <div class="payment-methods">
+        <div class="payment-method selected" data-method="credit">
+          <i class="fab fa-cc-visa"></i>
+          <div>
+            <h4>Credit/Debit Card</h4>
+            <p>Pay securely with your card</p>
+          </div>
+        </div>
+        <div class="payment-method" data-method="paypal">
+          <i class="fab fa-paypal"></i>
+          <div>
+            <h4>PayPal</h4>
+            <p>Pay with your PayPal account</p>
+          </div>
+        </div>
+        <div class="payment-method" data-method="bank">
+          <i class="fas fa-university"></i>
+          <div>
+            <h4>Bank Transfer</h4>
+            <p>Direct bank transfer</p>
+          </div>
+        </div>
+      </div>
+      
+      <button id="donateButton" class="submit-btn">
+        <i class="fas fa-heart"></i> Donate Now
+      </button>
+      
+      <div class="recent-donations">
+        <h3>Recent Donations</h3>
+        <div class="donation-item">
+          <span class="donor-name">Anonymous</span>
+          <span class="donation-amount">$100</span>
+        </div>
+        <div class="donation-item">
+          <span class="donor-name">Robert J.</span>
+          <span class="donation-amount">$50</span>
+        </div>
+        <div class="donation-item">
+          <span class="donor-name">Sarah M.</span>
+          <span class="donation-amount">$250</span>
+        </div>
+        <div class="donation-item">
+          <span class="donor-name">Michael T.</span>
+          <span class="donation-amount">$25</span>
+        </div>
+        <div class="donation-item">
+          <span class="donor-name">Jennifer K.</span>
+          <span class="donation-amount">$500</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <div class="section-header">
+        <img src="https://cdn-icons-png.flaticon.com/512/3059/3059518.png" alt="Contact HopeCare" class="section-img">
+        <h2>Contact Us</h2>
+        <p>Reach out for support, questions, or to get involved</p>
+      </div>
+      
+      <div class="contact-container">
+        <div class="contact-info">
+          <h3>Our Information</h3>
+          
+          <div class="contact-details">
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div>
+                <h4>Address</h4>
+                <p>123 Hope Street, Suite 100<br>Boston, MA 02110</p>
+              </div>
+            </div>
+            
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-phone-alt"></i>
+              </div>
+              <div>
+                <h4>Phone</h4>
+                <p>1-800-HOPE-CARE<br>(1-800-467-3227)</p>
+              </div>
+            </div>
+            
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div>
+                <h4>Email</h4>
+                <p>info@hopecare.org</p>
+              </div>
+            </div>
+          </div>
+          
+          <h3>Office Hours</h3>
+          <p>Monday - Friday: 9:00 AM - 5:00 PM<br>
+          Saturday: 10:00 AM - 2:00 PM<br>
+          Sunday: Closed</p>
+          
+          <h3>Follow Us</h3>
+          <div class="social-links">
+            <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        
+        <div class="contact-form">
+          <form id="contactForm">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="message">Your Message</label>
+              <textarea id="message" class="form-control" required></textarea>
+            </div>
+            
+            <button type="submit" class="submit-btn">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-content">
+        <div class="footer-about">
+          <div class="footer-logo">HopeCare</div>
+          <p>Providing hope, support, and resources to those affected by cancer since 2010.</p>
+          <div class="social-links">
+            <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        
+        <div class="footer-links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#learn">Cancer Information</a></li>
+            <li><a href="#stories">Patient Stories</a></li>
+            <li><a href="#support">Support Services</a></li>
+            <li><a href="#donate">Donate</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-links">
+          <h3>Resources</h3>
+          <ul>
+            <li><a href="#support">Financial Assistance</a></li>
+            <li><a href="#support">Clinical Trials</a></li>
+            <li><a href="#support">Caregiver Support</a></li>
+            <li><a href="#support">Bereavement</a></li>
+            <li><a href="#support">FAQ</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-links">
+          <h3>Get Involved</h3>
+          <ul>
+            <li><a href="#donate">Donate</a></li>
+            <li><a href="#contact">Volunteer</a></li>
+            <li><a href="#contact">Fundraise</a></li>
+            <li><a href="#contact">Corporate Partners</a></li>
+            <li><a href="#contact">Careers</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2023 HopeCare. All rights reserved. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+        <p>HopeCare is a 501(c)(3) nonprofit organization. Tax ID: 12-3456789.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="back-to-top" title="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <!-- Modal Structure -->
+  <div class="modal" id="infoModal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <h2 id="modalTitle">Modal Title</h2>
+      <div id="modalContent">
+        <p>Modal content will appear here.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Donation Success Modal -->
+  <div class="modal" id="donationModal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <h2 id="donationModalTitle">Thank You for Your Donation!</h2>
+      <div id="donationModalContent">
+        <p>Your generous contribution of <span id="donationAmount">$0</span> will help us provide critical support to cancer patients and their families.</p>
+        <p>You'll receive a receipt by email shortly. Thank you for being part of our mission!</p>
+        <button id="closeDonationModal" class="submit-btn" style="margin-top: 1.5rem;">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Dark mode toggle
+    const themeToggle = document.querySelector('.theme-toggle');
+    const body = document.body;
+    
+    // Check for saved theme preference
+    const currentTheme = localStorage.getItem('theme');
+    if (currentTheme) {
+      body.classList.add(currentTheme);
+      updateThemeIcon();
+    }
+    
+    themeToggle.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      const theme = body.classList.contains('dark-mode') ? 'dark-mode' : '';
+      localStorage.setItem('theme', theme);
+      updateThemeIcon();
+    });
+    
+    function updateThemeIcon() {
+      const icon = themeToggle.querySelector('i');
+      if (body.classList.contains('dark-mode')) {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+      } else {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+      }
+    }
+    
+    // Back to top button
+    const backToTopBtn = document.querySelector('.back-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopBtn.classList.add('visible');
+      } else {
+        backToTopBtn.classList.remove('visible');
+      }
+    });
+    
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+    
+    // Modal functionality
+    const modal = document.getElementById('infoModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalContent = document.getElementById('modalContent');
+    const closeModal = document.querySelector('.close-modal');
+    
+    // Modal content data
+    const modalData = {
+      'understanding': {
+        title: 'Understanding Cancer',
+        content: `<p>Cancer is a disease in which some of the body's cells grow uncontrollably and spread to other parts of the body. It can start almost anywhere in the human body, which is made up of trillions of cells.</p>
+        <p>Normally, human cells grow and multiply (through a process called cell division) to form new cells as the body needs them. When cells grow old or become damaged, they die, and new cells take their place.</p>
+        <p>When cancer develops, this orderly process breaks down. As cells become more and more abnormal, old or damaged cells survive when they should die, and new cells form when they are not needed. These extra cells can divide without stopping and may form growths called tumors.</p>`
+      },
+      'types': {
+        title: 'Types of Cancer',
+        content: `<p>There are more than 100 types of cancer. Types of cancer are usually named for the organs or tissues where the cancers form. Here are some common categories:</p>
+        <ul>
+          <li><strong>Carcinoma</strong> - cancers that begin in the skin or tissues that line or cover internal organs.</li>
+          <li><strong>Sarcoma</strong> - cancers that begin in bone, cartilage, fat, muscle, blood vessels, or other connective or supportive tissue.</li>
+          <li><strong>Leukemia</strong> - cancers that begin in blood-forming tissue such as the bone marrow.</li>
+          <li><strong>Lymphoma and myeloma</strong> - cancers that begin in the cells of the immune system.</li>
+          <li><strong>Central nervous system cancers</strong> - cancers that begin in the tissues of the brain and spinal cord.</li>
+        </ul>`
+      },
+      'prevention': {
+        title: 'Prevention & Screening',
+        content: `<p>You can reduce your risk of getting cancer by making healthy choices like:</p>
+        <ul>
+          <li>Maintaining a healthy weight</li>
+          <li>Eating a healthy diet with plenty of fruits and vegetables</li>
+          <li>Getting regular physical activity</li>
+          <li>Avoiding tobacco</li>
+          <li>Limiting alcohol consumption</li>
+          <li>Protecting your skin from the sun</li>
+          <li>Getting vaccinated against HPV and hepatitis B</li>
+        </ul>
+        <p>Regular screening tests can catch some cancers early, when treatment is most likely to be successful. Screening recommendations vary based on age, sex, and risk factors.</p>`
+      },
+      'treatment': {
+        title: 'Treatment Options',
+        content: `<p>Cancer treatment depends on the type of cancer, its stage, and the patient's overall health. Common treatments include:</p>
+        <ul>
+          <li><strong>Surgery</strong> - removing the cancerous tumor</li>
+          <li><strong>Chemotherapy</strong> - using drugs to kill cancer cells</li>
+          <li><strong>Radiation therapy</strong> - using high-energy rays to kill cancer cells</li>
+          <li><strong>Immunotherapy</strong> - boosting the body's natural defenses to fight cancer</li>
+          <li><strong>Targeted therapy</strong> - using drugs that target specific cancer cell vulnerabilities</li>
+          <li><strong>Hormone therapy</strong> - blocking hormones that fuel certain cancers</li>
+          <li><strong>Stem cell transplant</strong> - restoring blood-forming stem cells</li>
+        </ul>
+        <p>Many patients receive a combination of treatments. Palliative care is also important to manage symptoms and side effects.</p>`
+      },
+      'helplines': {
+        title: 'Cancer Helplines',
+        content: `<p>We provide 24/7 support through our network of trained professionals:</p>
+        <ul>
+          <li><strong>Main Support Line:</strong> 1-800-HOPE-CARE (1-800-467-3227)</li>
+          <li><strong>Crisis Counseling:</strong> Available 24/7 for urgent emotional support</li>
+          <li><strong>Specialist Connect:</strong> Get connected to oncology specialists</li>
+          <li><strong>Caregiver Support:</strong> Dedicated line for family members and caregivers</li>
+        </ul>
+        <p>All calls are confidential and free of charge. Our representatives can provide emotional support, answer questions about cancer, and help connect you with local resources.</p>`
+      },
+      'specialists': {
+        title: 'Find a Specialist',
+        content: `<p>Our specialist network includes top oncologists across the country. We can help you find:</p>
+        <ul>
+          <li>Medical oncologists</li>
+          <li>Radiation oncologists</li>
+          <li>Surgical oncologists</li>
+          <li>Pediatric oncologists</li>
+          <li>Oncology nurses</li>
+          <li>Palliative care specialists</li>
+        </ul>
+        <p>Use our online search tool or call our helpline to be matched with specialists in your area who accept your insurance. We can also help with second opinions and treatment center recommendations.</p>`
+      },
+      'financial': {
+        title: 'Financial Assistance',
+        content: `<p>Cancer treatment can be expensive. We offer several financial assistance programs:</p>
+        <ul>
+          <li><strong>Treatment Grants:</strong> Up to $5,000 for qualifying patients</li>
+          <li><strong>Medication Assistance:</strong> Help with costly prescriptions</li>
+          <li><strong>Transportation Aid:</strong> Gas cards and ride services for treatment visits</li>
+          <li><strong>Insurance Navigation:</strong> Help understanding and maximizing your coverage</li>
+          <li><strong>Fundraising Support:</strong> Guidance for setting up personal fundraising campaigns</li>
+        </ul>
+        <p>Our financial counselors can help you understand your options and apply for assistance. No one is denied support based on ability to pay.</p>`
+      },
+      'mental-health': {
+        title: 'Mental Health Support',
+        content: `<p>Cancer affects mental health as well as physical health. We offer:</p>
+        <ul>
+          <li><strong>Individual Counseling:</strong> With therapists specializing in cancer-related issues</li>
+          <li><strong>Support Groups:</strong> Both in-person and virtual options</li>
+          <li><strong>Mindfulness Programs:</strong> Meditation and stress reduction techniques</li>
+          <li><strong>Art Therapy:</strong> Creative expression for emotional healing</li>
+          <li><strong>Family Counseling:</strong> For couples and families affected by cancer</li>
+        </ul>
+        <p>All services are available on a sliding scale based on income. Many insurance plans are accepted. Ask about our free introductory sessions.</p>`
+      }
+    };
+    
+    // Open modal when clicking on learn items
+    document.querySelectorAll('[data-modal]').forEach(item => {
+      item.addEventListener('click', () => {
+        const modalId = item.getAttribute('data-modal');
+        if (modalData[modalId]) {
+          modalTitle.textContent = modalData[modalId].title;
+          modalContent.innerHTML = modalData[modalId].content;
+          modal.style.display = 'flex';
+          document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+      });
+    });
+    
+    // Close modal
+    closeModal.addEventListener('click', () => {
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    });
+    
+    // Close modal when clicking outside content
+    window.addEventListener('click', (e) => {
+      if (e.target === modal || e.target === donationModal) {
+        modal.style.display = 'none';
+        donationModal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      }
+    });
+    
+    // Form submission
+    const contactForm = document.getElementById('contactForm');
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Get form values
+      const name = this.querySelector('#name').value;
+      const email = this.querySelector('#email').value;
+      const subject = this.querySelector('#subject').value;
+      const message = this.querySelector('#message').value;
+      
+      // In a real application, you would send this data to a server
+      console.log('Form submitted:', { name, email, subject, message });
+      
+      // Show success message
+      modalTitle.textContent = 'Thank You!';
+      modalContent.innerHTML = `<p>Thank you for reaching out, ${name}!</p>
+        <p>We've received your message and will get back to you soon at ${email}.</p>
+        <p>In the meantime, you might find helpful information in our <a href="#support">Resources</a> section.</p>`;
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      
+      // Reset form
+      this.reset();
+    });
+    
+    // Smooth scrolling for navigation
+    document.querySelectorAll('nav a').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        window.scrollTo({
+          top: targetElement.offsetTop - 100,
+          behavior: 'smooth'
+        });
+        
+        // Update URL without reloading
+        history.pushState(null, null, targetId);
+      });
+    });
+    
+    // Animate sections on scroll
+    const sections = document.querySelectorAll('section');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+    
+    // Initialize donation progress bar
+    const progressBar = document.getElementById('progressBar');
+    const raisedAmount = 12450;
+    const goalAmount = 25000;
+    const progressPercentage = (raisedAmount / goalAmount) * 100;
+    progressBar.style.width = `${progressPercentage}%`;
+    
+    // Donation functionality
+    const donationOptions = document.querySelectorAll('.donation-option');
+    const customAmountInput = document.getElementById('customAmount');
+    const paymentMethods = document.querySelectorAll('.payment-method');
+    const donateButton = document.getElementById('donateButton');
+    const donationModal = document.getElementById('donationModal');
+    const donationModalTitle = document.getElementById('donationModalTitle');
+    const donationAmountSpan = document.getElementById('donationAmount');
+    const closeDonationModal = document.getElementById('closeDonationModal');
+    const raisedAmountSpan = document.getElementById('raisedAmount');
+    
+    let selectedAmount = 0;
+    let selectedPaymentMethod = 'credit';
+    
+    // Select donation amount
+    donationOptions.forEach(option => {
+      option.addEventListener('click', () => {
+        donationOptions.forEach(opt => opt.classList.remove('selected'));
+        option.classList.add('selected');
+        selectedAmount = parseInt(option.getAttribute('data-amount'));
+        customAmountInput.value = '';
+      });
+    });
+    
+    // Handle custom amount
+    customAmountInput.addEventListener('input', () => {
+      if (customAmountInput.value) {
+        donationOptions.forEach(opt => opt.classList.remove('selected'));
+        selectedAmount = parseInt(customAmountInput.value) || 0;
+      }
+    });
+    
+    // Select payment method
+    paymentMethods.forEach(method => {
+      method.addEventListener('click', () => {
+        paymentMethods.forEach(m => m.classList.remove('selected'));
+        method.classList.add('selected');
+        selectedPaymentMethod = method.getAttribute('data-method');
+      });
+    });
+    
+    // Process donation
+    donateButton.addEventListener('click', () => {
+      if (selectedAmount <= 0) {
+        alert('Please select or enter a donation amount');
+        return;
+      }
+      
+      // In a real app, you would process the payment here
+      console.log(`Processing $${selectedAmount} donation via ${selectedPaymentMethod}`);
+      
+      // Update raised amount (simulated)
+      const currentRaised = parseInt(raisedAmountSpan.textContent.replace('$', '').replace(',', ''));
+      const newRaised = currentRaised + selectedAmount;
+      raisedAmountSpan.textContent = `$${newRaised.toLocaleString()}`;
+      
+      // Update progress bar
+      const goalAmount = 25000;
+      const progressPercentage = (newRaised / goalAmount) * 100;
+      progressBar.style.width = `${progressPercentage}%`;
+      
+      // Add to recent donations (simulated)
+      const recentDonations = document.querySelector('.recent-donations');
+      const newDonation = document.createElement('div');
+      newDonation.className = 'donation-item';
+      newDonation.innerHTML = `
+        <span class="donor-name">You</span>
+        <span class="donation-amount">$${selectedAmount}</span>
+      `;
+      recentDonations.insertBefore(newDonation, recentDonations.firstChild);
+      
+      // Show thank you modal
+      donationAmountSpan.textContent = `$${selectedAmount}`;
+      donationModal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    });
+    
+    // Close donation modal
+    closeDonationModal.addEventListener('click', () => {
+      donationModal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    });
+    
+    // Header scroll effect
+    window.addEventListener('scroll', function() {
+      const header = document.querySelector('header');
+      if (window.scrollY > 50) {
+        header.style.padding = '0.5rem 0';
+        header.style.boxShadow = '0 2px 15px rgba(0,0,0,0.1)';
+      } else {
+        header.style.padding = '1.5rem 0';
+        header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.08)';
+      }
+    });
+    
+    // Initialize animations
+    window.addEventListener('DOMContentLoaded', () => {
+      // Add hover effect to cards
+      document.querySelectorAll('.type-card, .resource-card, .story-card, .donation-option').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+          card.style.transform = 'translateY(-5px)';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'translateY(0)';
+        });
+      });
+    });
+  </script>
+</body>
+</html>

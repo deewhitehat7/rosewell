@@ -1,0 +1,1 @@
+<Link to="/about" className="nav-btn">About</Link>

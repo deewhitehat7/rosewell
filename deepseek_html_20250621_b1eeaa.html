@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roswell Park Clone Resources</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #2a4d69, #4b86b4);
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .header {
+            background: rgba(0, 83, 155, 0.95);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo i {
+            font-size: 2.2rem;
+            color: #4CAF50;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+        
+        .hero h2 {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #4CAF50;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+        
+        .btn:hover {
+            background: #388E3C;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            margin-left: 15px;
+        }
+        
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin: 50px 0 30px;
+            color: white;
+            font-size: 2.2rem;
+        }
+        
+        .section-title i {
+            background: #4CAF50;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+        
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-icon {
+            background: #00539B;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            font-size: 3rem;
+        }
+        
+        .service-content {
+            padding: 25px;
+        }
+        
+        .service-content h3 {
+            color: #00539B;
+            margin-bottom: 15px;
+            font-size: 1.6rem;
+        }
+        
+        .service-content ul {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+        
+        .service-content li {
+            margin-bottom: 10px;
+        }
+        
+        .service-content .contact {
+            background: #f0f7ff;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .service-content .contact strong {
+            display: block;
+            margin-bottom: 8px;
+            color: #00539B;
+        }
+        
+        .pricing {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        th {
+            background: #00539B;
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        
+        tr:hover {
+            background: #f0f7ff;
+        }
+        
+        .footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 50px 0 20px;
+            margin-top: 50px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+        
+        .footer-section p {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #4CAF50;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: #333;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: #4CAF50;
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid #444;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        @media (max-width: 768px) {
+            .nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">
+                    <i class="fas fa-dna"></i>
+                    <h1>Roswell Park Clone Resources</h1>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#resources">Resources</a></li>
+                    <li><a href="#ordering">Ordering</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Advanced Cloning Resources for Cancer Research</h2>
+            <p>Roswell Park Comprehensive Cancer Center provides cutting-edge genomic resources and cloning services to accelerate cancer research and discovery worldwide.</p>
+            <a href="#ordering" class="btn">Order Clones</a>
+            <a href="#services" class="btn btn-outline">Explore Services</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <div class="container">
+        <h2 class="section-title" id="services">
+            <i class="fas fa-microscope"></i>
+            Our Cloning Services
+        </h2>
+        
+        <div class="services">
+            <!-- BACPAC Genomics -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-vial"></i>
+                </div>
+                <div class="service-content">
+                    <h3>BACPAC Genomics</h3>
+                    <p>Distributes BAC, PAC, and fosmid clones from genomic libraries developed at Roswell Park.</p>
+                    <ul>
+                        <li>Human, mouse, canine, porcine, and zebrafish libraries</li>
+                        <li>Clones shipped as agar stabs</li>
+                        <li>Commercial licensing available</li>
+                    </ul>
+                    <div class="contact">
+                        <strong>Ordering:</strong>
+                        <p>Submit requests via <a href="https://bacpacresources.org" target="_blank">bacpacresources.org</a></p>
+                        <strong>Contact:</strong>
+                        <p>Orders: bacpacorders@bacpacresources.org</p>
+                        <p>Technical: pieterjdejong@bacpacresources.org</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Gene Modulation Services -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-dna"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Gene Modulation Services</h3>
+                    <p>Comprehensive resources for gene knockdown and overexpression studies.</p>
+                    <ul>
+                        <li>shRNA Libraries (human/mouse)</li>
+                        <li>CRISPRi/a pooled libraries</li>
+                        <li>Full-length human cDNA clones</li>
+                    </ul>
+                    <div class="contact">
+                        <strong>Ordering:</strong>
+                        <p>Email renae.holtz@roswellpark.org with gene names and clone IDs</p>
+                        <strong>Consultations:</strong>
+                        <p>Available for experimental design</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Genomics Shared Resource -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-laptop-medical"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Genomics Shared Resource</h3>
+                    <p>Advanced genomic analysis services and sample processing.</p>
+                    <ul>
+                        <li>DNA/RNA extraction from multiple sources</li>
+                        <li>Next-generation sequencing (WGS, RNA-seq)</li>
+                        <li>Single-cell sequencing</li>
+                    </ul>
+                    <div class="contact">
+                        <strong>Sample Requirements:</strong>
+                        <p>Cells: 250K–1 million cells</p>
+                        <p>Tissue: 10–25 mg frozen</p>
+                        <strong>Contact:</strong>
+                        <p>Dr. Prashant Singh: Prashant.Singh@RoswellPark.org</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Pricing Section -->
+        <h2 class="section-title" id="ordering">
+            <i class="fas fa-dollar-sign"></i>
+            Service Pricing
+        </h2>
+        
+        <div class="pricing">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>1-5 constructs</th>
+                        <th>>5 constructs</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Glycerol stock</td>
+                        <td>$52.50</td>
+                        <td>$26</td>
+                    </tr>
+                    <tr>
+                        <td>Virus production</td>
+                        <td>$118</td>
+                        <td>$94</td>
+                    </tr>
+                    <tr>
+                        <td>Mycoplasma testing</td>
+                        <td>$37.50</td>
+                        <td>$20</td>
+                    </tr>
+                    <tr>
+                        <td>BAC/PAC clone screening</td>
+                        <td>$85</td>
+                        <td>$65</td>
+                    </tr>
+                    <tr>
+                        <td>Full sequencing service</td>
+                        <td>$250</td>
+                        <td>$210</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3 style="color: #00539B; margin-top: 30px;">Ordering Information</h3>
+            <p style="margin: 15px 0;">All orders must include the following information:</p>
+            <ul style="margin-left: 30px; margin-bottom: 20px;">
+                <li>Researcher name and institution</li>
+                <li>Shipping address and contact information</li>
+                <li>Clone IDs or gene names</li>
+                <li>Project description and intended use</li>
+                <li>Grant information (if applicable)</li>
+            </ul>
+            <a href="#contact" class="btn">Contact Us to Place Order</a>
+        </div>
+        
+        <!-- Resources Section -->
+        <h2 class="section-title" id="resources">
+            <i class="fas fa-book"></i>
+            Research Resources
+        </h2>
+        
+        <div class="pricing">
+            <h3 style="color: #00539B; margin-bottom: 20px;">Available Libraries</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                <div style="background: #f0f7ff; padding: 20px; border-radius: 10px;">
+                    <h4 style="color: #00539B; margin-bottom: 10px;">Human Libraries</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>RPCI-11 (CHORI)</li>
+                        <li>RPCI-13 (CHORI)</li>
+                        <li>RPCI-43 (BACPAC)</li>
+                    </ul>
+                </div>
+                <div style="background: #f0f7ff; padding: 20px; border-radius: 10px;">
+                    <h4 style="color: #00539B; margin-bottom: 10px;">Mouse Libraries</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>RPCI-23 (CHORI)</li>
+                        <li>RPCI-24 (CHORI)</li>
+                        <li>RPCI-41 (BACPAC)</li>
+                    </ul>
+                </div>
+                <div style="background: #f0f7ff; padding: 20px; border-radius: 10px;">
+                    <h4 style="color: #00539B; margin-bottom: 10px;">Other Species</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>Canine (RPCI-81)</li>
+                        <li>Porcine (RPCI-91)</li>
+                        <li>Zebrafish (RPCI-101)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="margin-top: 30px; padding: 20px; background: #e3f2fd; border-radius: 10px;">
+                <h4 style="color: #00539B; margin-bottom: 15px;">Key Notes for Researchers</h4>
+                <ul style="margin-left: 20px;">
+                    <li>BACPAC Genomics relocated to Redmond, WA in 2023 - update shipping addresses</li>
+                    <li>TCAG resources are restricted to Canadian researchers</li>
+                    <li>Allow 2-3 weeks for clone preparation and shipping</li>
+                    <li>All commercial users require licensing agreements</li>
+                    <li>Proper biosafety protocols must be followed for all materials</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Roswell Park Clone Resources</h3>
+                    <p>Providing advanced genomic resources to accelerate cancer research and discovery worldwide.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#resources">Resources</a></li>
+                        <li><a href="#ordering">Ordering</a></li>
+                        <li><a href="https://bacpacresources.org" target="_blank">BACPAC Resources</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Information</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Elm & Carlton Streets, Buffalo, NY 14263</p>
+                    <p><i class="fas fa-phone"></i> (716) 845-2300</p>
+                    <p><i class="fas fa-envelope"></i> clones@roswellpark.org</p>
+                    <p><i class="fas fa-globe"></i> www.roswellpark.org</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Roswell Park Comprehensive Cancer Center. All rights reserved.</p>
+                <p>This material is based upon work supported by the National Institutes of Health under Grant No. P30CA016056.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Highlight active navigation link
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section, .pricing, .services');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if(pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if(link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // Animation for service cards
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-10px)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>
